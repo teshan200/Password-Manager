@@ -1,81 +1,158 @@
-# Password Manager (C)
+# 🔐 Console-Based Password Vault System
 
-A simple console-based password manager written in C.
+## 📚 Course Information
+Course: Structured Programming II (In24-S2-IN1130)  
+Language: C  
+Type: Console-Based Application  
 
-It lets you save, view, search, modify, and delete account credentials (website, username, password), then persists them to a local file (`vault.txt`).
+---
 
-## Features
+## 📌 Project Overview
 
-- Add a new account (unique website)
-- Display all saved accounts
-- Search account by website
-- Modify existing account
-- Delete account
-- Count total saved accounts
-- Find account with the longest password
-- Find account with the shortest password
-- Count websites containing a substring
-- Detect weak passwords (length `< 6`)
-- Colored terminal menu (ANSI colors; enabled on Windows where supported)
+This project is a console-based Password Management System developed using structured programming concepts in C.
 
-## Project Structure
+The system allows users to securely manage website account credentials including:
 
-- `password_vault.c` — main C source code
-- `vault.txt` — local storage file for account data
+- Website name  
+- Username  
+- Password (stored with basic XOR protection)
 
-## How Data Is Stored
+The application uses structures, arrays of structures, string functions, file handling, loops, and conditional statements as required by the course guidelines.
 
-- Data is saved in `vault.txt` in this format:
+---
 
-  ```
-  website|username|encryptedPassword
-  ```
+## 🏗 System Design
 
-- Passwords are obfuscated using a simple XOR operation with key `#` before being written.
+### 1️⃣ Structures Used
 
-## Build & Run
+#### Account Structure
+Stores individual account details:
+- website
+- username
+- password (encrypted)
 
-### Windows (GCC / MinGW)
+#### Vault Structure
+- Array of Account (maximum 20 records)
+- totalAccounts counter
 
-```bash
-gcc password_vault.c -o password_vault.exe
-password_vault.exe
-```
+The Vault structure manages all account records in memory using an array of structures.
 
-### Linux / macOS (GCC)
+---
 
-```bash
-gcc password_vault.c -o password_vault
-./password_vault
-```
+## 💾 Data Storage
 
-## Usage
+- Data is stored in a text file named: `vault.txt`
+- Format used in file:
 
-1. Run the program.
-2. Choose an option from the menu (`0` to `10`).
-3. Manage your saved account entries.
-4. On each add/modify/delete operation, data is automatically saved to `vault.txt`.
+website|username|encryptedPassword
 
-## Limits
+Example stored line:
 
-Current compile-time limits in source:
+gmail.com|teshan|Q@!d$%x
 
-- Maximum accounts: `20`
-- Maximum website length: `60`
-- Maximum username length: `60`
-- Maximum password length: `60`
+Passwords are encrypted before saving to prevent plain-text storage.
 
-## Important Security Note
+---
 
-This project is best for learning/practice. XOR obfuscation is **not secure encryption** for real-world password protection.
+## 🔐 Password Protection (XOR Method)
 
-For production-grade security, use:
+The system uses a simple XOR-based protection method.
 
-- Strong encryption (e.g., AES-GCM)
-- A master password with key derivation (PBKDF2/Argon2)
-- Secure memory handling
-- OS-protected key storage
+Encryption logic:
 
-## License
+    encryptedChar = originalChar ^ '#'
 
-No license file is currently included. Add one (for example, MIT) if you plan to share this project publicly.
+The same function is used for both encryption and decryption.
+
+This works because XOR has the mathematical property:
+
+    A ^ B ^ B = A
+
+Meaning:
+If you apply XOR twice with the same key, the original value is restored.
+
+⚠ Note:  
+This is a basic protection mechanism for academic purposes only.  
+It is not strong cryptographic security.
+
+---
+
+## 📋 Functional Requirements Implemented
+
+### 🔹 Data Management (5 Activities)
+
+1. Add new account  
+2. Display all accounts  
+3. Search account by website  
+4. Modify account  
+5. Delete account  
+
+---
+
+### 🔹 Logical / Processing Activities (5 Activities)
+
+6. Count total saved accounts  
+7. Find account with longest password  
+8. Find account with shortest password  
+9. Count accounts containing a substring in website name  
+10. Check weak passwords (length < 6 characters)  
+
+---
+
+## 🖥 Program Features
+
+- Menu-driven interface
+- Input validation using fgets
+- File handling (automatic load and save)
+- Array shifting for delete operation
+- String manipulation using:
+  - strcmp
+  - strcpy
+  - strlen
+  - strcat
+  - strstr
+  - strtok
+- Bitwise operation (XOR) for password protection
+
+---
+
+## 🧠 Concepts Demonstrated
+
+- Structures
+- Array of structures
+- String handling
+- File handling
+- Bitwise operators
+- Loops and conditionals
+- Menu-driven programming
+- Data validation
+
+---
+
+## 📊 Sample Menu Options
+
+1. Add new account  
+2. Display all accounts  
+3. Search account by website  
+4. Modify account  
+5. Delete account  
+6. Count total saved accounts  
+7. Find account with longest password  
+8. Find account with shortest password  
+9. Count websites with substring  
+10. Check weak passwords  
+0. Exit  
+
+---
+
+## 📁 File Structure
+
+main.c  
+vault.txt  
+README.md  
+
+---
+
+## 👨‍💻 Author
+
+Developed as part of Structured Programming II coursework By Teshan Pamodya
