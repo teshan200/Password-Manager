@@ -1,0 +1,40 @@
+# C/C++ build outputs
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Debug / symbol files
+*.pdb
+*.ilk
+*.dSYM/
+
+# Build directories
+build/
+bin/
+obj/
+
+# CMake (if used)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# VS Code / IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local vault data
+vault.txt
